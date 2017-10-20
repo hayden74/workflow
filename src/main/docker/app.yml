@@ -1,0 +1,15 @@
+version: '2'
+services:
+    workflow-app:
+        image: workflow
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://workflow-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=workflow
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8088:8088
+    workflow-mongodb:
+        extends:
+            file: mongodb.yml
+            service: workflow-mongodb
